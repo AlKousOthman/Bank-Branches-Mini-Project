@@ -1,0 +1,12 @@
+﻿@model NewBranchForm
+
+<h1>Add new Employee</h1>
+
+@using (Html.BeginForm("Create", "Bank", FormMethod.Post))
+{
+    @*To create an automatic form *@
+    @Html.EditorForModel();
+
+    <button type="submit" class="btn btn-success">Add</button>
+}
+

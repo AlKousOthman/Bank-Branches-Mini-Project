@@ -1,0 +1,221 @@
+﻿<h1>KFH Branches</h1>
+@*@model List<BankBranchModel>*@
+
+@inject IViewLocalizer Localizer
+   @* <table class="table">
+        <thead>
+            <tr>
+                <th>Location Name</th>
+                <th>Location URL</th>
+                <th>Branch Manager</th>
+                <th>Employee Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var branch in Model)
+            {
+                <tr>
+                    <td>@branch.LocationName</td>
+                    <td><a href="@branch.LocationURL">@branch.LocationURL</a></td>
+                    <td>@branch.BranchManager</td>
+                    <td>@branch.EmployeeCount</td>
+                    <td>More Information</td>
+                    <td>
+                    <a href="@Url.Action("BranchesDetails","Bank", new { id = branch.Id })" class="btn btn-primary">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("Create","Bank")" class="btn btn-primary">Add Branch</a> *@
+    @*
+<div class="col">
+    <div class="col col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Branches</h5>
+                <p class="card-text">@Model.TotalBranches</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+
+        </p>
+    </div>
+    <div class="col col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Employee</h5>
+                <p class="card-text">@Model.TotalEmployees</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+
+        </p>
+    </div>
+    <div class="col col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Branch With Most Employee</h5>
+                <p class="card-text">@Model.BranchWithMostEmployees.LocationName</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>
+
+        </p>
+    </div>
+    <div class="col col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Branch List</h5>
+                <p class="card-text">
+                    <table class="table">
+                        <tr>
+                            <td>Branch Name</td>
+                            <td>Branch Location</td>
+                            <td>Branch Manager</td>
+                            <td>Bank ID</td>
+                            <td>Employee Count</td>
+
+                        </tr>
+
+
+
+                        @foreach (var bankBranch in Model.BranchList)
+                        {
+                            <tr>
+                                <td><a href="/Bank/Details/@bankBranch.Id">@bankBranch.LocationName</a></td>
+                                <td><a href="@bankBranch.LocationURL" target="_blank">Google Maps</a></td>
+                                <td>@bankBranch.BranchManager</td>
+                                <td>@bankBranch.Id</td>
+                                <td>@bankBranch.Employees.Count</td>
+                                <td>
+                                    <a class="btn btn-info" href="Bank/Edit/@bankBranch.Id">Edit Branch</a>
+                                    <div>
+                                        <a class="btn btn-outline-warning" asp-action="Delete" asp-route-id="@bankBranch.Id">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <p>
+
+    </p>
+</div>
+<div>
+    <a class="btn btn-info" href="Bank/Create">Add Branch</a>
+</div> 
+
+
+
+*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">@Localizer["TotalBranches"]</h5>
+                        <p class="card-text">@Model.TotalBranches</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">@Localizer["TotalEmployees"]</h5>
+                        <p class="card-text">@Model.TotalEmployees</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">@Localizer["BranchWithMostEmployees"]</h5>
+                        <p class="card-text">@Model.BranchWithMostEmployees.LocationName</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Branch List</h5>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th>@Localizer["BranchName"]</th>
+                                    <th>@Localizer["BranchLocation"]</th>
+                                    <th>@Localizer["BranchManager"]</th>
+                                    <th>@Localizer["BankID"]</th>
+                                    <th>@Localizer["EmployeeCount"]</th>
+                                    <th>@Localizer["Actions"]</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var bankBranch in Model.BranchList)
+                                {
+                                        <tr>
+                                            <td><a href="/Bank/Details/@bankBranch.Id">@bankBranch.LocationName</a></td>
+                                            <td><a href="@bankBranch.LocationURL" target="_blank">GoogleMaps</a></td>
+                                            <td>@bankBranch.BranchManager</td>
+                                            <td>@bankBranch.Id</td>
+                                            <td>@bankBranch.Employees.Count</td>
+                                            <td>
+                                            <a class="btn btn-info" href="Bank/Edit/@bankBranch.Id">@Localizer["Edit"]</a>
+                                                @*<a class="btn btn-outline-danger" href="Bank/Delete/@bankBranch.Id">Delete</a>*@
+               </td>
+                                        </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+            <a class="btn btn-info" href="Bank/Create">@Localizer["AddBranch"]</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
